@@ -1,0 +1,50 @@
+DEMO PROJECT
+SHOW DEMO DESIGN
+SESSION A
+1. Take a look at the GraphQL Queries and Mutations provided in the src/graphQL folder.
+2. Take a look at main.js 
+Notices that bootstrap & bootstrap icons has been imported
+Also some custom CSS is being imported to format the layout src/index.css
+May want to demo how sign up in GraphQL Apollo UI works
+3. Setup the App.js page
+//Setup BrowseRouter (Header, Login, SignUp, PageNotFound)
+//Setup Apollo Client
+//Setup State & Functions for App.jsx for user
+//Setup useEffect
+4. Quickly review react hook forms
+5. Create the SignUp Component 
+
+HOMEWORK SESSION A
+0. First Test all your mutation and queries in the GraphQL Playground!!!!
+1. Create a Router to move between pages
+2. Create React app for your Assessment 2 Project with a working SignUp & Login Component
+2. You may also want to create Header & NotFound component 
+
+//Alternatively if you are not ready to work on your project yet you could delete the login component and try and build your own to practice applying what you have learnt. 
+
+SESSION B
+Have a look at how journals are created in the final project in the browser
+0. Create Protected Routes
+1. Create JournalEntry Component
+
+HOMEWORK SESSION B
+1. Add functionality to your Assessment 2 project that allows the user to Enter Data on the client
+
+SESSION C
+1. Finish the Journal Component (So users can add journal entries)
+3. Create JournalCard Component
+4. Update the Journal Component (So it displays the JournalCard Component and fetches the data)
+5. Test
+
+HOMEWORK SESSION C
+1. Add functionality to your Assessment 2 project that allows the user to View Data
+
+SESSION D
+1. Create the JournalEntryEdit Component
+2. Update App.jsx to include the JournalEntryEdit Component as a route
+
+HOMEWORK SESSION D
+1. Add functionality to your Assessment 2 project that allows the user to edit data
+
+
+//Setup Protected Route Functions

@@ -1,0 +1,8 @@
+{
+  "appEnv":"development",
+  "appPrivateKey": "defaultPrivateKey",
+  "db": {
+    "name": "SecondhandFashionFinder",
+    "connectionString": "mongodb+srv://vorakornvt:mZPikRZCBE37fTVd@cluster0.qa9l4.mongodb.net/"
+  }
+}

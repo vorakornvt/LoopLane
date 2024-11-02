@@ -68,7 +68,7 @@ function Footer() {
             <Col className="text-end">
               <span>{getCurrentYear()} - </span>
               <a
-                className="link-dark link-offset-2 link-underline-opacity-0 fw-bold link-underline-opacity-100-hover mx-2"
+                className="link-danger link-offset-2 link-underline-opacity-0 fw-bold link-underline-opacity-100-hover mx-2"
                 href="#"
               >
                 LOOPLANE

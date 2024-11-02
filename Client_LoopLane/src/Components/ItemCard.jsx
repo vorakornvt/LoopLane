@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { DELETE_ITEM } from "../graphQL/mutations/mutations";
-import { Card, Button } from "react-bootstrap"; // Import Bootstrap components
+import { Container } from "react-bootstrap"; // Import Bootstrap components
 
 function ItemCard({ item, user, refetch }) {
   const [deleteItem] = useMutation(DELETE_ITEM, {
@@ -32,62 +32,84 @@ function ItemCard({ item, user, refetch }) {
   };
 
   return (
-    <Card className="m-3 shadow border-0" style={{ borderRadius: "20px" }}>
-      {/* Ensure the image URL is valid */}
-      <Card.Img
-        variant="top"
-        src={item.itemPicture} // This will display the image from the URL
-        alt={item.itemName}
-        style={{
-          borderRadius: "20px 20px 0 0",
-          height: "200px",
-          objectFit: "cover",
-        }}
-      />
-      <Card.Body>
-        <div className="d-flex align-items-center">
-          <div className="flex-grow-1 me-3">
-            <Card.Title className="text-primary fw-bold">
-              {item.itemName}
-            </Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">
-              <i className="bi bi-calendar-event"></i>{" "}
-              {new Date(parseInt(item.createdAt)).toLocaleDateString()}
-            </Card.Subtitle>
-          </div>
-          <div className="ms-auto d-flex">
-            <Link to={`/job/edit/${item.id}`}>
-              <Button
-                variant="outline-primary"
-                className="me-2"
-                aria-label="Edit Job"
+    <>
+      <Container fluid className="mb-3">
+        <div
+          className="card mx-auto border-light mb-3 shadow p-3 mb-5 bg-light rounded"
+          style={{ maxWidth: "700px", maxHight: "auto" }}
+        >
+          <div className="row g-0">
+            {/* Image Section */}
+            <div className="col-md-8">
+              <img
+                src={item.itemPicture}
+                alt={item.itemName}
+                className="img-fluid rounded-start"
+              />
+            </div>
+
+            {/* Content Section */}
+            <div className="col-md-4 d-flex flex-column">
+              <div className="card-body">
+                {/* Title Section */}
+                <div className="text-start">
+                  <h5 className="mt-3 card-title fs-4">{item.itemName}</h5>
+                </div>
+
+                {/* Details Section */}
+                <div className="d-flex flex-column align-items-start my-3">
+                  <p className="card-text" style={{ fontSize: "14px" }}>
+                    {item.itemDescription}
+                  </p>
+                  <p className="card-text" style={{ fontSize: "14px" }}>
+                    Condition: {item.itemCondition}
+                  </p>
+                  <p className="card-text" style={{ fontSize: "14px" }}>
+                    Price: {item.itemPrice} AUD
+                  </p>
+                  <p className="card-text" style={{ fontSize: "14px" }}>
+                    Category: {item.itemCategory}
+                  </p>
+                </div>
+              </div>
+
+              <div className=" mx-auto col-md-10 d-flex flex-column mb-5">
+                <Link to={`/itemedit/${item.id}`}>
+                  <button className="btn btn-outline-dark me-3 ms-3">
+                    EDIT
+                  </button>
+                  <button
+                    className="btn btn-outline-dark"
+                    onClick={handleDelete}
+                    disabled={loading}
+                    aria-label="Delete Item"
+                  >
+                    DELETE
+                  </button>
+                </Link>
+              </div>
+
+              {/* Footer Section */}
+              <div
+                className="mt-auto text-end"
+                style={{ paddingRight: "10px" }}
               >
-                <i className="bi bi-pencil"></i>
-              </Button>
-            </Link>
-            <Button
-              variant="outline-danger"
-              onClick={handleDelete}
-              disabled={loading}
-              aria-label="Delete Job"
-            >
-              <i className="bi bi-trash"></i>
-            </Button>
+                <p
+                  className="text-body-secondary"
+                  style={{ fontSize: "12px", marginBottom: "-2px" }}
+                >
+                  Updated on:{" "}
+                  {new Date(parseInt(item.createdAt)).toLocaleDateString()}
+                </p>
+                <p className="text-body-secondary" style={{ fontSize: "12px" }}>
+                  Posted by: {user?.username}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-        <Card.Text className="mt-3">{item.itemDescription}</Card.Text>
-        <div className="d-flex justify-content-between mt-2 text-muted">
-          <span style={{ color: "#50da00" }}>Price: ${item.itemPrice}</span>
-          <span>Posted by: {user?.username}</span>
-        </div>
-        <div className="mt-3">
-          <strong>Condition:</strong> <span>{item.itemCondition}</span>
-        </div>
-        <div className="mt-1">
-          <strong>Category:</strong> <span>{item.itemCategory}</span>
-        </div>
-      </Card.Body>
-    </Card>
+      </Container>
+    </>
   );
 }
 

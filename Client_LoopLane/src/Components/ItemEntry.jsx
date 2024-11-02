@@ -2,6 +2,7 @@
 import { Controller, useForm } from "react-hook-form";
 import Joi from "joi";
 import { joiResolver } from "@hookform/resolvers/joi";
+import { useNavigate } from "react-router-dom";
 // Apollo Client
 import { useMutation } from "@apollo/client";
 import { CREATE_ITEM } from "../graphQL/mutations/mutations";
@@ -20,6 +21,7 @@ import {
 
 function ItemEntry(props) {
   const userData = props.user;
+  const navigate = useNavigate();
 
   const schema = Joi.object({
     itemName: Joi.string().min(3).max(255).required(),
@@ -58,6 +60,8 @@ function ItemEntry(props) {
     await createItemData(data, token);
     props.refetch();
     reset();
+
+    navigate("/itempost");
   };
 
   const createItemData = async (data, token) => {
@@ -253,7 +257,7 @@ function ItemEntry(props) {
             </div>
           </Container>
           <div className="text-center mt-3">
-            <button type="submit" className="btn btn-outline-dark">
+            <button type="submit" className="btn btn-danger">
               POST ITEM
             </button>
           </div>

@@ -1,12 +1,11 @@
 import ItemEntry from "../Components/ItemEntry";
-import ItemCard from "../Components/ItemCard";
 import { useQuery } from "@apollo/client";
 import { GET_ITEMS } from "../graphQL/queries/queries";
-import { Container } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 import { useEffect } from "react";
+import ItemGrid from "../Components/ItemGrid";
 
 const ItemPage = ({ user }) => {
-  // Fetch items using Apollo Client's useQuery hook
   const { loading, error, data, refetch } = useQuery(GET_ITEMS, {
     context: {
       headers: {
@@ -19,16 +18,23 @@ const ItemPage = ({ user }) => {
     refetch();
   }, [refetch]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return (
+      <div className="mx-auto spinner-grow text-danger" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
+    );
 
   if (error) return <p>Error 😭</p>;
 
   console.log(data);
 
   return (
-    <Container fluid>
-      <ItemEntry user={user} refetch={refetch} />
-    </Container>
+    <>
+      <Container fluid>
+        <ItemEntry user={user} refetch={refetch} />
+      </Container>
+    </>
   );
 };
 

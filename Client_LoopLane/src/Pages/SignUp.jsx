@@ -12,7 +12,7 @@ import Joi from "joi";
 //Apollo Client
 import { useMutation } from "@apollo/client";
 import { CREATE_USER } from "../graphQL/mutations/mutations";
-import Logo from "../../src/assets/image/Asset5DW.png";
+import Logo from "../../src/assets/image/Asset6DW.png";
 import BGimage from "../../src/assets/image/Artboard10.png";
 
 function SignUp({ onLogin }) {
@@ -79,11 +79,6 @@ function SignUp({ onLogin }) {
     <Container
       fluid
       className="d-flex justify-content-center align-items-center vh-100"
-      style={{
-        backgroundImage: `url(${BGimage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
     >
       <Card
         className="shadow-lg border-0 p-3 mb-5 bg-body-tertiary rounded"
@@ -212,7 +207,7 @@ function SignUp({ onLogin }) {
               variant="lights"
               size="l"
               block="true"
-              className="w-100 btn btn-warning mt-3 py-2 shadow-sm border-0 fontBody"
+              className="w-100 btn btn-danger mt-3 py-2 shadow-sm border-0 fontBody"
               type="submit"
             >
               SIGNUP
@@ -224,7 +219,7 @@ function SignUp({ onLogin }) {
             Already have an account?{" "}
             <Link
               to="/login"
-              className="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover mx-2"
+              className="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover mx-2"
             >
               Login
             </Link>{" "}

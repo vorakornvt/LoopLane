@@ -5,7 +5,7 @@ import { Container } from "react-bootstrap"; // React Bootstrap Library
 
 // Import custom components
 import Header from "./Components/Header";
-
+import itemEdit from "./Pages/ItemEdit";
 import ItemPage from "./Pages/ItemPage";
 import ItemPost from "./Pages/ItemPost";
 import Login from "./Pages/Login";
@@ -92,25 +92,20 @@ function App() {
             <Route path="/login" element={<Login onLogin={handleLogin} />} />
             <Route path="/signup" element={<SignUp onLogin={handleLogin} />} />
             <Route path="/" element={<Home user={user} />} />
-
             {/* Protected Item Routes */}
             <Route
               path="/itementry"
               element={<ProtectedRoute component={ItemPage} user={user} />}
             />
-
             <Route
               path="/itempost"
               element={<ProtectedRoute component={ItemPost} user={user} />}
             />
-
-            {/* Protected Journal Entry Edit Route */}
-            {/* <Route
-              path="/journaledit/:journalEntryId"
-              element={
-                <ProtectedRoute component={JournalEntryEdit} user={user} />
-              }
-            /> */}
+            Protected Journal Entry Edit Route
+            <Route
+              path="/itemedit/:itemId"
+              element={<ProtectedRoute component={itemEdit} user={user} />}
+            />
             {/* 404 Page */}
             <Route path="*" element={<NotFound />} />
           </Routes>

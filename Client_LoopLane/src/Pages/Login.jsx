@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom"; // React Router
 //React Bootstrap
 import { Card, Form, Button, Alert, Container } from "react-bootstrap";
 //image asset
-import Logo from "../../src/assets/image/Asset5DW.png";
+import Logo from "../../src/assets/image/Asset6DW.png";
 import BGimage from "../../src/assets/image/Artboard10.png";
 //Apollo Client
 import { useMutation } from "@apollo/client";
@@ -84,11 +84,6 @@ function Login({ onLogin }) {
     <Container
       fluid
       className="d-flex justify-content-center align-items-center vh-100"
-      style={{
-        backgroundImage: `url(${BGimage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
     >
       <Card
         className="shadow-lg border-0 p-3 mb-5 bg-body-tertiary rounded"
@@ -191,7 +186,7 @@ function Login({ onLogin }) {
               variant="lights"
               size="l"
               block="true"
-              className="w-100 btn btn-warning mt-3 py-2 shadow-sm border-0 fontBody"
+              className="w-100 btn btn-danger mt-3 py-2 shadow-sm border-0 fontBody"
               type="submit"
             >
               LOGIN
@@ -203,7 +198,7 @@ function Login({ onLogin }) {
               Don’t have an account?{" "}
               <Link
                 to="/signup"
-                className="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover mx-2"
+                className="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover mx-2"
               >
                 Sign up
               </Link>{" "}

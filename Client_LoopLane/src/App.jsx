@@ -106,6 +106,7 @@ function App() {
               path="/itemedit/:itemId"
               element={<ProtectedRoute component={itemEdit} user={user} />}
             />
+            <Route path="/item/:itemId" element={<ItemPage user={user} />} />
             {/* 404 Page */}
             <Route path="*" element={<NotFound />} />
           </Routes>

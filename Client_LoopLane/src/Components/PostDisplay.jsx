@@ -5,7 +5,7 @@ import "./PostDisplay.css"; // Import the CSS file for hover effects
 
 function PostDisplay({ item }) {
   return (
-    <Link to={`/itemedit/${item.id}`} style={{ textDecoration: "none" }}>
+    <Link to={`/item/${item.id}`} style={{ textDecoration: "none" }}>
       <Card className="post-display-card border-0 shadow-sm mb-4">
         <Card.Img
           src={item.itemPicture}

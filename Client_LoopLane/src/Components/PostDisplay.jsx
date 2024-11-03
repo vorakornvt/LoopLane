@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Card, Container } from "react-bootstrap";
-import "./PostDisplay.css"; // Import the CSS file for hover effects
+import "./PostDisplay.css";
 
 function PostDisplay({ item }) {
   return (

@@ -1,9 +1,9 @@
 //React
 import { useState } from "react";
-import { Controller, useForm } from "react-hook-form"; // React Hook Forms
-import Joi from "joi"; // Joi Validation
-import { joiResolver } from "@hookform/resolvers/joi"; // Joi Resolver for React Hook Forms
-import { Link, useNavigate } from "react-router-dom"; // React Router
+import { Controller, useForm } from "react-hook-form";
+import Joi from "joi";
+import { joiResolver } from "@hookform/resolvers/joi";
+import { Link, useNavigate } from "react-router-dom";
 //React Bootstrap
 import { Card, Form, Button, Alert, Container } from "react-bootstrap";
 //image asset
@@ -15,7 +15,6 @@ import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../graphQL/mutations/mutations";
 
 function Login({ onLogin }) {
-  // JOI Validation for React-Hook-Forms
   const schema = Joi.object({
     email: Joi.string()
       .required()
@@ -23,11 +22,6 @@ function Login({ onLogin }) {
     password: Joi.string().min(6).required(),
   });
 
-  // React-Hook-Forms
-  // control - React Hook Forms Controller this is used to control the input
-  // handleSubmit - React Hook Forms handleSubmit function this is used to handle the submit event
-  // formState - React Hook Forms formState this is used to access the form state
-  // reset - React Hook Forms reset function this is used to reset the form
   const {
     control,
     handleSubmit,

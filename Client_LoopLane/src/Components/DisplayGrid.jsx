@@ -3,7 +3,6 @@ import { Container, Row, Col } from "react-bootstrap";
 import Display from "./Display";
 
 function DisplayGrid({ data, user, refetch }) {
-  // Ensure data.items is defined and slice it
   const itemsToDisplay =
     data && data.items ? [...data.items].reverse().slice(0, 8) : [];
 

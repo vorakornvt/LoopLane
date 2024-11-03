@@ -10,7 +10,7 @@ function Header({ user, onLogout }) {
   const onItemPostPage = location.pathname === "/itempost";
   const onItemEntryPage = location.pathname === "/itementry";
 
-  // Helper function to get initials (first two letters of username)
+ )
   const getUserInitials = (username) => {
     return username ? username.slice(0, 2).toUpperCase() : "";
   };
@@ -19,7 +19,7 @@ function Header({ user, onLogout }) {
     <Container fluid>
       <Navbar bg="light" expand="lg" className="bg-body-tertiary">
         <Nav className="d-flex align-items-center">
-          {/* Conditional Discover and Create Buttons for Logged-in Users */}
+  
           {user ? (
             <>
               <Nav.Link as={Link} to="/itempost">
@@ -115,7 +115,7 @@ function Header({ user, onLogout }) {
               </Nav.Link>
             </>
           ) : (
-            // Logged-out view: Login and Register buttons
+            
             <>
               <Nav.Link as={Link} to="/login">
                 <button

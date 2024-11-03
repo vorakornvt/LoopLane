@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { DELETE_ITEM } from "../graphQL/mutations/mutations";
-import { Container } from "react-bootstrap"; // Import Bootstrap components
+import { Container } from "react-bootstrap";
 
 function ItemCard({ item, user, refetch }) {
   const [deleteItem] = useMutation(DELETE_ITEM, {
@@ -14,6 +14,7 @@ function ItemCard({ item, user, refetch }) {
   });
 
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleDelete = async () => {
     setLoading(true);
@@ -26,10 +27,7 @@ function ItemCard({ item, user, refetch }) {
         throw new Error(result.errors[0].message);
       }
 
-      const deletedItem = result.data?.deleteItem?.item;
-      if (deletedItem) {
-        console.log(`Deleted item: ${deletedItem.itemName}`);
-      }
+      navigate("/itempost");
 
       refetch();
     } catch (error) {
@@ -78,7 +76,7 @@ function ItemCard({ item, user, refetch }) {
               </div>
             </div>
 
-            <div className="mx-auto  flex-column mb-5">
+            <div className="mx-auto flex-column mb-5">
               <Link to={`/itemedit/${item.id}`}>
                 <button className="btn btn-outline-dark me-3 ms-3">EDIT</button>
               </Link>

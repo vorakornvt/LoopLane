@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { Container } from "react-bootstrap";
 
-//Simple 404 page component
 function NotFound() {
   return (
     <Container fluid className="bg-white">

@@ -1,13 +1,12 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import PostDisplay from "./PostDisplay"; // Ensure the path is correct
+import PostDisplay from "./PostDisplay";
 
 function ItemGrid({ data, user, refetch }) {
   return (
     <Container fluid>
       <Row className="g-2">
         {data?.items.length > 0 ? (
-          // Reverse the array and slice to get the last 8 items
           [...data.items]
             .reverse()
             .slice(0, 8)

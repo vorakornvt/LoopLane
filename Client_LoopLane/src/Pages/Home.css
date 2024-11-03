@@ -9,10 +9,10 @@
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.2; /* Controls background opacity */
+  opacity: 0.2; 
   z-index: 1;
   animation: moveBackground 20s linear infinite;
-  pointer-events: none; /* Prevents interaction */
+  pointer-events: none; 
 }
 
 .content-overlay {
@@ -25,6 +25,6 @@
     transform: translateY(0);
   }
   100% {
-    transform: translateY(50px); /* Adjust for desired speed */
+    transform: translateY(50px); 
   }
 }

@@ -76,7 +76,6 @@ function Home({ user }) {
                   </>
                 ) : (
                   <>
-                    {/* Links for guests (not logged in) */}
                     <Link
                       to="/signup"
                       style={{ marginRight: "18px" }}
@@ -130,7 +129,6 @@ function Home({ user }) {
             >
               {user ? (
                 <>
-                  {/* Links for logged-in users */}
                   <Link
                     to="/itempost"
                     style={{ marginRight: "0px" }}
@@ -148,7 +146,6 @@ function Home({ user }) {
                 </>
               ) : (
                 <>
-                  {/* Links for guests (not logged in) */}
                   <Link
                     to="/signup"
                     className="link-danger link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover fw-bold fs-6 px-3"

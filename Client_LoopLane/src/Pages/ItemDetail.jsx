@@ -7,7 +7,6 @@ import { Container } from "react-bootstrap";
 const ItemDetail = ({ user }) => {
   const { itemId } = useParams();
 
-  // Check for token existence before querying
   if (!user?.token) {
     return <p>Please log in to view this item.</p>;
   }

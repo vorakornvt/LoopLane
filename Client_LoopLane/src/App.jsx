@@ -13,6 +13,7 @@ import SignUp from "./Pages/SignUp";
 import NotFound from "./Pages/NotFound";
 import Home from "./Pages/Home";
 import Footer from "./Components/Footer";
+import ItemDetail from "./Pages/ItemDetail";
 
 //? APOLLO CLIENT
 // Import Apollo Client and related dependencies
@@ -101,12 +102,12 @@ function App() {
               path="/itempost"
               element={<ProtectedRoute component={ItemPost} user={user} />}
             />
-            Protected Journal Entry Edit Route
+
             <Route
               path="/itemedit/:itemId"
               element={<ProtectedRoute component={itemEdit} user={user} />}
             />
-            <Route path="/item/:itemId" element={<ItemPage user={user} />} />
+            <Route path="/item/:itemId" element={<ItemDetail user={user} />} />
             {/* 404 Page */}
             <Route path="*" element={<NotFound />} />
           </Routes>

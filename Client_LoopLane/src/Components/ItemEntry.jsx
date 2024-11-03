@@ -85,9 +85,6 @@ function ItemEntry(props) {
   return (
     <>
       <Container fluid className="mb-3">
-        <div className="border-bottom border-secondary mt-3 mb-2 d-flex">
-          <h2 className="fs-5 fw-light fontBody">CREATE YOUR LOOP</h2>
-        </div>
         <Form noValidate onSubmit={handleSubmit(onSubmit)}>
           <Container fluid>
             <div className="d-flex row align-items-center">

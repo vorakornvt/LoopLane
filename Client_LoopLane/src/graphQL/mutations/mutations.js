@@ -3,14 +3,18 @@ import { gql } from "@apollo/client";
 export const DELETE_ITEM = gql`
   mutation DeleteItem($deleteItemId: ID!) {
     deleteItem(id: $deleteItemId) {
-      id
-      itemName
-      itemDescription
-      itemPrice
-      itemPicture
-      itemCondition
-      itemCategory
-      user
+      success
+      message
+      item {
+        id
+        itemName
+        itemDescription
+        itemPrice
+        itemPicture
+        itemCondition
+        itemCategory
+        user
+      }
     }
   }
 `;

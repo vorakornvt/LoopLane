@@ -1,4 +1,3 @@
-// itemResolver.js
 const { GraphQLError } = require("graphql");
 const { Item, validateItem } = require("../../models/item");
 
@@ -46,6 +45,7 @@ const itemResolver = {
   },
 
   Mutation: {
+    // Create a new item
     createItem: async (parent, args, context) => {
       try {
         isAuthenticated(context);
@@ -70,6 +70,7 @@ const itemResolver = {
       }
     },
 
+    // Update an existing item
     updateItem: async (parent, args, context) => {
       try {
         isAuthenticated(context);
@@ -94,30 +95,40 @@ const itemResolver = {
       }
     },
 
+    // Delete an existing item
     deleteItem: async (parent, args, context) => {
       try {
         isAuthenticated(context);
 
-        let item = await item.findById(args.id);
-
+        // Find the item by its ID
+        const item = await Item.findById(args.id);
         if (!item) {
           throw new Error("Item entry not found");
         }
 
+        // Authorization check for item owner
         isAuthorized(item, context);
 
+        // Proceed to delete the item
         await Item.deleteOne({ _id: args.id });
-        return item;
+
+        // Return a response with the deleted item's ID
+        return {
+          success: true,
+          message: "Item deleted successfully",
+          id: item._id, // Include the ID of the deleted item
+          item, // Include the deleted item object if needed
+        };
       } catch (error) {
-        throw new GraphQLError(error, {
-          extensions: {
-            code: "DELETE_ITEM_ERROR",
-          },
+        throw new GraphQLError(error.message, {
+          extensions: { code: "DELETE_ITEM_ERROR" },
         });
       }
     },
   },
 };
+
+// Authentication and Authorization Functions
 function isAuthenticated(context) {
   if (!context.user) {
     throw new GraphQLError("User is not authenticated, No token provided", {

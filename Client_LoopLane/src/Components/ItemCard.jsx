@@ -16,19 +16,26 @@ function ItemCard({ item, user, refetch }) {
   const [loading, setLoading] = useState(false);
 
   const handleDelete = async () => {
-    setLoading(true); // Set loading to true when starting the delete operation
+    setLoading(true);
     try {
       const result = await deleteItem({
-        variables: { deleteItemId: item.id }, // Ensure this is using 'item.id'
+        variables: { deleteItemId: item.id },
       });
+
       if (result.errors) {
         throw new Error(result.errors[0].message);
       }
-      refetch(); // Refetch the query to update the list after deletion
+
+      const deletedItem = result.data?.deleteItem?.item;
+      if (deletedItem) {
+        console.log(`Deleted item: ${deletedItem.itemName}`);
+      }
+
+      refetch();
     } catch (error) {
       console.error(`Failed to delete item: ${error.message}`);
     } finally {
-      setLoading(false); // Set loading back to false
+      setLoading(false);
     }
   };
 
@@ -71,7 +78,7 @@ function ItemCard({ item, user, refetch }) {
               </div>
             </div>
 
-            <div className="mx-auto d-flex  mb-5">
+            <div className="mx-auto  flex-column mb-5">
               <Link to={`/itemedit/${item.id}`}>
                 <button className="btn btn-outline-dark me-3 ms-3">EDIT</button>
               </Link>

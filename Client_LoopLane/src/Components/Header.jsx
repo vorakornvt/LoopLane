@@ -37,7 +37,7 @@ function Header({ user, onLogout }) {
                     onItemEntryPage ? "btn-danger" : "btn-secondary"
                   } `}
                 >
-                  Create
+                  Post
                 </button>
               </Nav.Link>
             </>

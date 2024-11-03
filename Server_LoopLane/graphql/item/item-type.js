@@ -26,14 +26,10 @@ const ItemType = gql`
   }
 
   type ItemMutationResponse {
-    id: ID!
-    itemName: String!
-    itemDescription: String!
-    itemPrice: Float!
-    itemPicture: String!
-    itemCondition: String!
-    itemCategory: String!
-    user: ID!
+    success: Boolean!
+    message: String
+    id: ID! # Make sure this matches the schema requirements
+    item: Item # Optional, if you want to include the entire item object
   }
 
   type Query {

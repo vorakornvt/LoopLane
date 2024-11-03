@@ -1,8 +1,5 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
-import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
-import ImageLogo from "../../src/assets/image/Asset5DW.png";
-import ImageLogoRed from "../../src/assets/image/Asset8DW.png";
 import ImageLogoRedTwo from "../../src/assets/image/Asset6DW.png";
 
 function Header({ user, onLogout }) {
@@ -10,7 +7,6 @@ function Header({ user, onLogout }) {
   const onItemPostPage = location.pathname === "/itempost";
   const onItemEntryPage = location.pathname === "/itementry";
 
- )
   const getUserInitials = (username) => {
     return username ? username.slice(0, 2).toUpperCase() : "";
   };
@@ -19,7 +15,6 @@ function Header({ user, onLogout }) {
     <Container fluid>
       <Navbar bg="light" expand="lg" className="bg-body-tertiary">
         <Nav className="d-flex align-items-center">
-  
           {user ? (
             <>
               <Nav.Link as={Link} to="/itempost">
@@ -115,7 +110,6 @@ function Header({ user, onLogout }) {
               </Nav.Link>
             </>
           ) : (
-            
             <>
               <Nav.Link as={Link} to="/login">
                 <button

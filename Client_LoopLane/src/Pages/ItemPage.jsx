@@ -1,9 +1,8 @@
 import ItemEntry from "../Components/ItemEntry";
 import { useQuery } from "@apollo/client";
 import { GET_ITEMS } from "../graphQL/queries/queries";
-import { Container, Col, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { useEffect } from "react";
-import ItemGrid from "../Components/ItemGrid";
 
 const ItemPage = ({ user }) => {
   const { loading, error, data, refetch } = useQuery(GET_ITEMS, {

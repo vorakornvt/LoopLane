@@ -6,6 +6,9 @@ import { DELETE_ITEM } from "../graphQL/mutations/mutations"; // GraphQL mutatio
 import { Container } from "react-bootstrap"; // Bootstrap container component
 
 // ItemCard component that displays an item card with options to edit or delete
+// Param: item - Object containing the details of the item to be displayed, such as name, description, price, picture, condition, and category.
+// Param: user - Object representing the user data, including the user's token for authorization and username for display purposes.
+// Param: refetch - Function to refetch the item list after deletion to keep the displayed data up-to-date.
 function ItemCard({ item, user, refetch }) {
   // Initialize the deleteItem mutation with authorization headers
   const [deleteItem] = useMutation(DELETE_ITEM, {

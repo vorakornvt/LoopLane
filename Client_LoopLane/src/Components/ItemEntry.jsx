@@ -48,6 +48,7 @@ function ItemEntry(props) {
   const [createItem] = useMutation(CREATE_ITEM);
 
   // Form submission handler
+  // Param: data - The form data collected by react-hook-form, including item details such as name, description, price, picture URL, condition, and category.
   const onSubmit = async (data) => {
     data.user = userData.id; // Add user ID to item data
     const token = userData.token; // Extract user token for authorization
@@ -60,6 +61,8 @@ function ItemEntry(props) {
   };
 
   // Function to execute GraphQL mutation with authorization token
+  // Param: data - The item details being submitted to create a new item
+  // Param: token - The user's authorization token to verify access on the server
   const createItemData = async (data, token) => {
     try {
       const result = await createItem({

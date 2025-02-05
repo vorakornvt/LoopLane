@@ -31,7 +31,7 @@ function Home({ user }) {
         <Container fluid>
           <div
             style={{
-              height: "100vh",
+              height: "550px",
             }}
           >
             <Row

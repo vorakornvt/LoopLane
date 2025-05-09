@@ -3,7 +3,7 @@ import Logo from "../assets/image/Asset5DW.png";
 import { Link } from "react-router-dom";
 import ItemGrid from "../Components/ItemGrid";
 import { useQuery } from "@apollo/client";
-import { GET_ITEMS } from "../graphql/queries/queries";
+import { GET_ITEMS } from "../graphQL/queries/queries.js";
 import { useEffect } from "react";
 
 function Home({ user }) {

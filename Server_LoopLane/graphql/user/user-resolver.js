@@ -1,15 +1,15 @@
 // Import necessary modules
-const { GraphQLError } = require('graphql');
-const { User, validateUser } = require('../../models/user');
-const Joi = require('joi');
-const _ = require('lodash');
+const { GraphQLError } = require("graphql");
+const { User, validateUser } = require("../../models/user");
+const Joi = require("joi");
+const _ = require("lodash");
 
 // Define the resolvers for the User type
 const resolvers = {
   Query: {
     getUser: async (parent, args, context) => {
       try {
-        //In Apollo Server, the context object is a way to share data between resolvers. 
+        //In Apollo Server, the context object is a way to share data between resolvers.
         //It is an object that is passed to every resolver function, and can be used to store data that is needed by multiple resolvers.
         //The context object is typically used to store information about the current user, such as their authentication status or user ID. This information can then be used by resolvers to determine whether the user is authorized to perform certain actions.
 
@@ -20,11 +20,11 @@ const resolvers = {
         const user = await User.findById(args.id);
         // If the user doesn't exist, throw an Error
         if (!user) {
-          throw new Error('User not found')
+          throw new Error("User not found");
         }
 
         // Check if the user is authorized to update the user
-        isAuthorized(user, context)
+        isAuthorized(user, context);
 
         // Return the user data
         return user;
@@ -32,7 +32,7 @@ const resolvers = {
         // If there was an error, throw an ApolloError with a custom error code
         throw new GraphQLError(error, {
           extensions: {
-            code: 'GET_USER_ERROR',
+            code: "GET_USER_ERROR",
           },
         });
       }
@@ -46,7 +46,7 @@ const resolvers = {
         // If there was an error, throw an ApolloError with a custom error code
         throw new GraphQLError(error, {
           extensions: {
-            code: 'GET_USERS_ERROR',
+            code: "GET_USERS_ERROR",
           },
         });
       }
@@ -59,7 +59,7 @@ const resolvers = {
         const { error, value } = validateUser(args.input);
         // If the input data is invalid, throw an Error
         if (error) {
-          throw new Error(`Invalid User input ${error}`)
+          throw new Error(`Invalid User input ${error}`);
         }
         // Create a new user with the validated input data
         const user = new User(value);
@@ -69,7 +69,7 @@ const resolvers = {
         const token = user.generateAuthToken();
 
         // Pick only the necessary user data and add the auth token
-        let userData = _.pick(user, ['id', 'username', 'email', 'createdAt']);
+        let userData = _.pick(user, ["id", "username", "email", "createdAt"]);
         userData.token = token;
 
         // Return the user data with the auth token
@@ -78,7 +78,7 @@ const resolvers = {
         // If there was an error, throw an ApolloError with a custom error code
         throw new GraphQLError(error, {
           extensions: {
-            code: 'CREATE_USER_ERROR',
+            code: "CREATE_USER_ERROR",
           },
         });
       }
@@ -93,27 +93,30 @@ const resolvers = {
         const { error, value } = loginSchema.validate(args.input);
         // If the input data is invalid, throw an Error
         if (error) {
-          throw new Error(`Invalid User input ${error}`)
+          throw new Error(`Invalid User input ${error}`);
         }
 
         // Find the user with the given email
         const user = await User.findOne({ email: value.email });
         // If the user doesn't exist, throw an Error
         if (!user) {
-          throw new Error('Invalid email or password')
+          throw new Error("Invalid email or password");
         }
         // Check if the password is correct
-        const validPassword = await user.comparePassword(value.password, user.password)
+        const validPassword = await user.comparePassword(
+          value.password,
+          user.password
+        );
         // If the password is incorrect, throw an Error
         if (!validPassword) {
-          throw new Error('Invalid email or password')
+          throw new Error("Invalid email or password");
         }
 
         // Generate an auth token for the user
         const token = user.generateAuthToken();
 
         // Pick only the necessary user data and add the auth token
-        let userData = _.pick(user, ['id', 'username', 'email', 'createdAt']);
+        let userData = _.pick(user, ["id", "username", "email", "createdAt"]);
         userData.token = token;
 
         // Return the user data with the auth token
@@ -122,14 +125,13 @@ const resolvers = {
         // If there was an error, throw an ApolloError with a custom error code
         throw new GraphQLError(error, {
           extensions: {
-            code: 'LOGIN_USER_ERROR',
+            code: "LOGIN_USER_ERROR",
           },
         });
       }
     },
     updateUser: async (parent, args, context) => {
       try {
-
         // Check if the user is authenticated
         isAuthenticated(context);
 
@@ -137,7 +139,7 @@ const resolvers = {
         const user = await User.findById(args.id);
         // If the user doesn't exist, throw an Error
         if (!user) {
-          throw new Error('User not found')
+          throw new Error("User not found");
         }
 
         // Check if the user is authorized to update the user
@@ -146,11 +148,13 @@ const resolvers = {
         const { error, value } = validateUser(args.input);
         // If the input data is invalid, throw an Error
         if (error) {
-          throw new Error(`Invalid User input ${error}`)
+          throw new Error(`Invalid User input ${error}`);
         }
 
         // Update the user with the validated input data
-        const updatedUser = await User.findByIdAndUpdate(args.id, value, { new: true });
+        const updatedUser = await User.findByIdAndUpdate(args.id, value, {
+          new: true,
+        });
 
         // Return the updated user data
         return updatedUser;
@@ -158,14 +162,13 @@ const resolvers = {
         // If there was an error, throw an ApolloError with a custom error code
         throw new GraphQLError(error, {
           extensions: {
-            code: 'UPDATE_USER_ERROR'
+            code: "UPDATE_USER_ERROR",
           },
         });
       }
     },
     deleteUser: async (parent, args, context) => {
       try {
-
         // Check if the user is authenticated
         isAuthenticated(context);
 
@@ -173,7 +176,7 @@ const resolvers = {
         const user = await User.findById(args.id);
         // If the user doesn't exist, throw an Error
         if (!user) {
-          throw new Error('User not found')
+          throw new Error("User not found");
         }
 
         // Check if the user is authorized to delete the user
@@ -183,12 +186,11 @@ const resolvers = {
 
         // Return the deleted user data
         return deletedUser;
-
       } catch (error) {
         // If there was an error, throw an ApolloError with a custom error code
         throw new GraphQLError(error, {
           extensions: {
-            code: 'DELETE_USER_ERROR',
+            code: "DELETE_USER_ERROR",
           },
         });
       }
@@ -198,20 +200,19 @@ const resolvers = {
 
 function isAuthenticated(context) {
   if (!context.user) {
-    throw new GraphQLError('User is not authenticated, No token provided', {
-      extensions: { code: 'UNAUTHENTICATED' },
+    throw new GraphQLError("User is not authenticated, No token provided", {
+      extensions: { code: "UNAUTHENTICATED" },
     });
   }
 }
 
 function isAuthorized(user, context) {
   if (user._id.toString() !== context.user._id) {
-    throw new GraphQLError('User is not authorized to perform this action', {
-      extensions: { code: 'FORBIDDEN', http: { status: 403 } },
+    throw new GraphQLError("User is not authorized to perform this action", {
+      extensions: { code: "FORBIDDEN", http: { status: 403 } },
     });
   }
 }
-
 
 // Export the resolvers
 module.exports = resolvers;

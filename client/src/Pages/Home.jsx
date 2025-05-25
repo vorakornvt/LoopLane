@@ -31,12 +31,12 @@ function Home({ user }) {
         <Container fluid>
           <div
             style={{
-              height: "550px",
+              height: "100vh",
             }}
           >
             <Row
               className="justify-content-center"
-              style={{ paddingTop: "130px" }}
+              style={{ paddingTop: "100px" }}
             >
               <img
                 src={Logo}
@@ -102,7 +102,7 @@ function Home({ user }) {
       <Container fluid>
         <div
           style={{
-            height: "auto",
+            height: "100vh",
           }}
         >
           <Row

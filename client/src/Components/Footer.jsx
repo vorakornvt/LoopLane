@@ -7,7 +7,7 @@ function Footer() {
   };
   return (
     <>
-      <Container className="mt-1" fluid>
+      <Container className="" fluid>
         <div style={{ height: "auto" }} className="bg-body-tertiary">
           <Row className="pt-5 d-flex justify-content-between align-items-center">
             <Col>
